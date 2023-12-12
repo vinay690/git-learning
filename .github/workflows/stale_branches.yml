@@ -16,4 +16,6 @@ jobs:
         cd $GITHUB_WORKSPACE
         for branch in $(git branch -r); do
           echo "${branch#origin/}"
+          echo "hello"
+          echo "world"
         done
