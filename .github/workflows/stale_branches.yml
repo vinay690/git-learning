@@ -3,14 +3,6 @@ name: List Inactive Remote Branches
 on:
   workflow_dispatch:
     inputs:
-      repository:
-        description: 'GitHub repository name (e.g., username/repo)'
-        required: true
-        default: ${{ github.repository }}
-      target-branch:
-        description: 'Branch to list remote branches from (e.g., main)'
-        required: true
-        default: 'main'
       inactive-days:
         description: 'Number of days to consider a branch inactive'
         required: true
@@ -23,9 +15,6 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-      with:
-        repository: ${{ github.event.inputs.repository }}
-        ref: ${{ github.event.inputs.target-branch }}
  
     - name: Fetch All Branches
       run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
