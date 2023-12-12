@@ -2,7 +2,7 @@ name: List Remote Branches
  
 on:
   workflow_dispatch:
- 
+  
 jobs:
   list-branches:
     runs-on: ubuntu-latest
@@ -11,11 +11,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
  
+    - name: Fetch All Branches
+      run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+ 
     - name: List Remote Branches
       run: |
         cd $GITHUB_WORKSPACE
         for branch in $(git branch -r); do
           echo "${branch#origin/}"
-          echo "hello"
-          echo "world"
         done
